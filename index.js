@@ -1,12 +1,14 @@
 import express from "express";
-import jwt from "jsonwebtoken";
 import mongoose from "mongoose";
+import { registerValidation, loginValidation } from "./validations.js";
+import checkAuth from "./utils/checkAuth.js";
+import * as UserController from "./controllers/UserController.js";
 
 
 const port = 8000;
 const secret_key = "jk4h35kj34324654^$%&hrftejytk6%*&jn";
 const db_password = "root"
-const db_url = `mongodb+srv://danzo0l:${db_password}@mern-blog.gbzas.mongodb.net/?retryWrites=true&w=majority`;
+const db_url = `mongodb+srv://danzo0l:${db_password}@mern-blog.gbzas.mongodb.net/blog?retryWrites=true&w=majority`;
 
 mongoose.connect(db_url).then(() => {
     console.log('DB connected');
@@ -17,25 +19,18 @@ mongoose.connect(db_url).then(() => {
 const app = express();
 app.use(express.json());
 
+
 app.get('/', (req, res) => {
     res.send('Hello');
 });
 
-app.post('/auth/login', (req, res) => {
-    console.log(req.body);
 
-    const token = jwt.sign({
-        email: req.body.email,
-        name: "User", 
-    }, secret_key);
+app.post('/auth/login', loginValidation, UserController.login);
 
-    
+app.post('/auth/register', registerValidation, UserController.register);
 
-    res.json({
-        "status": 200,
-        token
-    });
-});
+app.get('/auth/me', checkAuth, UserController.getMe);
+
 
 app.listen(port, (err) => {
     if (err) {
@@ -43,3 +38,5 @@ app.listen(port, (err) => {
     }
     console.log(`Server started on http://127.0.0.1:${port}`);
 });
+
+export default secret_key;
