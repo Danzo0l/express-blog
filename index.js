@@ -12,7 +12,7 @@ import * as UploadController from "./controllers/UploadController.js";
 
 
 // Server variables
-const port = 4444 //process.env.PORT || 8000;
+const port = process.env.PORT //process.env.PORT || 8000;
 const secret_key = "jk4h35kj34324654^$%&hrftejytk6%*&jn";
 const db_password = "root"
 const db_url = `mongodb+srv://danzo0l:${db_password}@cluster0.gbzas.mongodb.net/?retryWrites=true&w=majority`;
