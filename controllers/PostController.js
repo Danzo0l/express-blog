@@ -7,7 +7,7 @@ export const create = async (req, res) => {
             title: req.body.title,
             text: req.body.text,
             imageUrl: req.body.imageUrl,
-            tags: req.body.tags,
+            tags: req.body.tags.split(' '),
             user: req.userId,
         });
 
@@ -26,6 +26,19 @@ export const getAll = async (req, res) => {
     try {
         const posts = await PostModel.find().populate('user', '-passwordHash -__v -createdAt -createdAt').exec();
         res.status(200).json(posts);
+    } catch (err) {
+        res.status(500).json({
+            "error": err,
+        });
+    }
+}
+
+
+export const getLastTags = async (req, res) => { 
+    try {
+        const posts = await PostModel.find().limit(5).exec();
+        const tags = posts.map(obj => obj.tags).flat().slice(-5);
+        res.status(200).json(tags);
     } catch (err) {
         res.status(500).json({
             "error": err,
@@ -59,7 +72,7 @@ export const getOne = async (req, res) => {
                 }
                 res.status(200).json(doc);
             }
-        );
+        ).populate('user', '-passwordHash');
     } catch (err) {
         res.status(500).json({
             "error": err,

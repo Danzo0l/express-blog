@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
-import secret_key from "../index.js";
+import server_vars from "../index.js";
 import UserModel from "../models/User.js";
 
 
@@ -22,7 +22,7 @@ export const register = async (req, res) => {
         const user = await doc.save();
         const token = jwt.sign({
             _id: user._id,
-        }, secret_key, {
+        }, server_vars.secret_key, {
             expiresIn: '7d',
         });
 
@@ -32,7 +32,6 @@ export const register = async (req, res) => {
             ...userData,
             token,
         });
-
 
     } catch (err) {
         res.status(500).json({
@@ -61,7 +60,7 @@ export const login = async (req, res) => {
 
         const token = jwt.sign({
             _id: user._id,
-        }, secret_key, {
+        }, server_vars.secret_key, {
             expiresIn: '7d',
         });
 

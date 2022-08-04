@@ -11,7 +11,7 @@ This service was created for a simple blog, written in express.YS. To manage pos
 
 #### Run servise
 
-Install dependenses: command `npm install`.  
+Install dependencies command `npm install`.  
 For run web-server run: `npm run dev`, if a successful launch in the terminal will be displayed   
 `Server started on http://127.0.0.1:8000`   
 If the service successfully connects to the database, you will see a message:  

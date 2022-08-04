@@ -1,6 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
 import multer from "multer";
+import cors from "cors";
 
 import { registerValidation, loginValidation, postCreateValiadtion } from "./validations.js";
 import checkAuth from "./utils/checkAuth.js";
@@ -29,6 +30,7 @@ mongoose.connect(db_url).then(() => {
 const app = express();
 // Write rules of server work
 app.use(express.json());
+app.use(cors());
 app.use('/uploads', express.static('uploads'));
 
 
@@ -60,6 +62,7 @@ app.post('/upload', upload.single('image'), checkAuth, UploadController.loadFile
 
 // CRUD for post routing
 app.get('/posts', PostController.getAll);
+app.get('/tags', PostController.getLastTags);
 app.get('/posts/:id', PostController.getOne);
 app.post('/posts', checkAuth, postCreateValiadtion, PostController.create);
 app.delete('/posts/:id', checkAuth, PostController.remove); 
