@@ -15,7 +15,7 @@ import * as UploadController from "./controllers/UploadController.js";
 const port = 8000;
 const secret_key = "jk4h35kj34324654^$%&hrftejytk6%*&jn";
 const db_password = "root"
-const db_url = `mongodb+srv://danzo0l:${db_password}@cluster0.gbzas.mongodb.net/?retryWrites=true&w=majority`;
+const db_url = process.env.MONGODB_URL; //`mongodb+srv://danzo0l:${db_password}@cluster0.gbzas.mongodb.net/?retryWrites=true&w=majority`;
 const uploads_path = 'uploads';
 
 
