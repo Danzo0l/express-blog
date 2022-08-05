@@ -50,7 +50,6 @@ Else will be displayed errors.
 | `/auth/me` + **Bearer** | `get` | Return user info by him token and verificate user |
 | `/auth/login` + **JSON** | `post` | Authorizing by JWT token, return userinfo and token |
 | `/auth/register` + **JSON** | `post` | Registration by JWT token, return userinfo and token |
-| `/auth/register` + **JSON** | `post` | Registration by JWT token, return userinfo and token |
 | `/upload` + **Bearer** + **FILE** | `post` | Upload file on server (onlu for authorized users) |
 | `/uploads/:filename` | `get` | Get file from server by filename |
 
