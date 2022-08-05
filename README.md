@@ -67,10 +67,10 @@ Else will be displayed errors.
 `POST /auth/register`
 ```javascript
 {
-	"fullName": String
-    "email": String,
-	"password": String,
-    "avatarUrl": String
+    "fullName": String  
+    "email": String,  
+    "password": String,  
+    "avatarUrl": String  
 }
 ```
   
