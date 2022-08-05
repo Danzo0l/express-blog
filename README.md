@@ -59,8 +59,8 @@ Else will be displayed errors.
 `POST /auth/login`
 ```javascript
 {
-	"email": String,
-	"password": String
+    "email": String,
+    "password": String
 }
 ```
 
@@ -77,10 +77,10 @@ Else will be displayed errors.
 `PATCH /posts/:id` `POST /posts/`
 ```javascript
 {
-	"title": String,
-	"text": String,
-	"tags": Array,
-	"imageUrl": String
+    "title": String,
+    "text": String,
+    "tags": Array,
+    "imageUrl": String
 }
 ```
 
